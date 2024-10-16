@@ -1,10 +1,10 @@
-import { Text, View } from "react-native";
+import { Button,Text, View } from "react-native";
 
 export default function StaticsButton() 
 {
     return(
         <View>
-        <Text>Statics</Text>
+        <Button title="Statics" onPress={() => console.log("Statics")} /> 
         </View>
     );
 
