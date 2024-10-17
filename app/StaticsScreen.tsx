@@ -1,7 +1,6 @@
 import { Text, View } from "react-native";
-import  StaticsButton  from "./statics";
 
-export default function Index() {
+export default function StaticsScreen() {
   return (
     <View
       style={{
@@ -10,8 +9,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <StaticsButton />
+      <Text>Statics Screen</Text>
     </View>
   );
 }
