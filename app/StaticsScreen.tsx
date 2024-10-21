@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import WashInfo from "../components/WashInfo"; 
+import Service from "../components/statics-components/Service"; 
 
 export default function StaticsScreen() {
   return (
@@ -11,7 +11,7 @@ export default function StaticsScreen() {
       }}
     >
       <Text>Statics Screen</Text>
-      <WashInfo />
+      <Service />
     </View>
   );
 }
