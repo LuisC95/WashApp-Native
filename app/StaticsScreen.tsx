@@ -1,4 +1,5 @@
 import { Text, View } from "react-native";
+import WashInfo from "../components/WashInfo"; 
 
 export default function StaticsScreen() {
   return (
@@ -10,6 +11,7 @@ export default function StaticsScreen() {
       }}
     >
       <Text>Statics Screen</Text>
+      <WashInfo />
     </View>
   );
 }
