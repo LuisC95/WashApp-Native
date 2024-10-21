@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
 import Service from "../components/statics-components/Service"; 
+import Schedule from "@/components/statics-components/Schedule";
 
 export default function StaticsScreen() {
   return (
@@ -10,6 +11,8 @@ export default function StaticsScreen() {
         alignItems: "center",
       }}
     >
+      
+      <Schedule />
       <Text>Statics Screen</Text>
       <Service />
     </View>
