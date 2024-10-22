@@ -1,6 +1,6 @@
 import{ View, Text, Button } from "react-native";
 
-class Wash
+export class Wash
 {
     serviceNumber: number;
     serviceType: string;
@@ -51,11 +51,11 @@ const currentWash = new Wash
         'enjoy'
     );
 
-export default function WashInfo()
+export default function ServiceInfo()
 {
     return(
         <View>
-            <Button title="give me my object" onPress={() => console.log(`This is the wash number ${currentWash.serviceNumber}`)}></Button>
+            <Button title="give me my object" onPress={() => console.log(`This service was made it for ${currentWash.serviceEmployee}`)}></Button>
         </View>
     )
 }

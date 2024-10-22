@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {DateTime} from 'luxon';
+import {Wash} from './Service';
 
 export default function Schedule()
 {
@@ -9,6 +10,9 @@ export default function Schedule()
 
     //state used to select days
     const [selectDay, setSelectDay] = useState<number | null>(null);
+
+    //state used to save services by day
+    const [serviceByDay, setServiceByDay] = useState<{[key:number]: Wash[] }>({});
 
     //get current month and year 
     const month = currentDate.month;
@@ -32,6 +36,25 @@ export default function Schedule()
         
     };
 
+    // function to show services in console
+  function logServicesForDay(day: number): void 
+  {
+    const services = serviceByDay[day]; // Obtener los servicios para ese día
+    if (!services || services.length === 0) {
+      console.log(`No hay servicios para el día ${day}`);
+    } else {
+            services.forEach((service) => 
+            {
+                console.log(`Servicio número: ${service.serviceNumber}`);
+                console.log(`Tipo de servicio: ${service.serviceType}`);
+                console.log(`Empleado: ${service.serviceEmployee}`);
+                console.log(`Estado del servicio: ${service.serviceStatus ? 'Completado' : 'Pendiente'}`);
+                console.log(`-------------------------------`);
+        
+            })
+        }
+    };
+
     //log day function
     function logDay(day: number)
     :void
@@ -43,11 +66,11 @@ export default function Schedule()
     function handelingSelection(day: number)
     :void
     {
-        setSelectDay(day);
-        logDay(day);
+        setSelectDay(day); //set touched day as selected day
+        logDay(day); //save selected day in log
     }
     //rendering days of the month
-    function renderDays()
+    function renderDays(): JSX.Element[]
     {
         const days = [];
         for (let day = 1; day <= daysInMonth; day++)
@@ -58,7 +81,11 @@ export default function Schedule()
                         styles.day,
                         selectDay === day ? styles.selectDay : null,  //it changes the style when the day is selected
                          ]}
-                         onPress={() => handelingSelection(day)}
+                         onPress={() => 
+                            {
+                            handelingSelection(day); 
+                            logServicesForDay(day);
+                            }}
                     > 
                         <Text>{day}</Text>
                     </TouchableOpacity>
@@ -66,6 +93,7 @@ export default function Schedule()
             }
             return days;
     };
+    
     return (
     <View style={styles.container}>
       {/* Header shows month and year */}
