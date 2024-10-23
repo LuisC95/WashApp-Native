@@ -1,11 +1,14 @@
 import { StyleSheet } from "react-native";
+import { red } from "react-native-reanimated/lib/typescript/Colors";
 
 
   
 export const styles = StyleSheet.create({
+
   container: 
   {
     padding: 20,
+    // backgroundColor: 'blue',
   },
   header: 
   {
@@ -29,10 +32,11 @@ export const styles = StyleSheet.create({
   {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    // backgroundColor: 'red',
   },
   day: 
   {
-    width: 40,
+    width: 35,
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
@@ -44,5 +48,14 @@ export const styles = StyleSheet.create({
   selectDay: 
   {
       backgroundColor: 'blue', // El día seleccionado cambia a azul
+  },
+  weekDayNames:{
+    width: 40,
+    alignItems: 'center',
+  },
+  weekDaysContainer:{
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 10,
   },
 });
