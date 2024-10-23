@@ -77,11 +77,11 @@ export default function Schedule()
             {
                 days.push(
                     <TouchableOpacity key={day} 
-                    style={[
-                        styles.day,
-                        selectDay === day ? styles.selectDay : null,  //it changes the style when the day is selected
-                         ]}
-                         onPress={() => 
+                        style={[
+                            styles.day,
+                            selectDay === day ? styles.selectDay: null,  //it changes the style when the day is selected
+                            ]}
+                        onPress={() => 
                             {
                             handelingSelection(day); 
                             logServicesForDay(day);
@@ -141,10 +141,6 @@ const styles = StyleSheet.create({
     {
       flexDirection: 'row',
       flexWrap: 'wrap',
-    },
-    daysContainerTouch: 
-    {
-
     },
     day: 
     {
