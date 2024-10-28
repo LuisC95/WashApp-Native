@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import {Text, View, TouchableOpacity, StyleSheet, Button} from 'react-native';
 import {DateTime} from 'luxon';
-import {Wash} from './Service';
+import {Wash, currentWash} from './Service';
 import {styles} from './statics-styles/schedule-styles';
-import { loadPartialConfigAsync } from '@babel/core';
-// import {Date} from './Schedule-object';
 
-class Date
+export class Date
 {
     day: number;
     month: number; 
@@ -106,7 +104,7 @@ export default function Schedule()
                             onPress={() => 
                                 {
                                     dateSelection(day);
-                                    console.log(weekDaysNames[weekDay-1]);
+                                    console.log(currentWash.serviceEmployee);
                                 }}
                         >
                             <Text>{dayNumber}</Text>                            

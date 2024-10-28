@@ -1,4 +1,5 @@
 import{ View, Text, Button } from "react-native";
+import { DateTime } from "luxon";
 
 export class Wash
 {
@@ -38,7 +39,7 @@ export class Wash
     }
 }
 
-const currentWash = new Wash
+export const currentWash = new Wash
     (
         104, 
         'FS hw', 

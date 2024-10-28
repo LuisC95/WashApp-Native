@@ -52,6 +52,7 @@ export const styles = StyleSheet.create({
   weekDayNames:{
     width: 40,
     alignItems: 'center',
+    backgroundColor: 'red',
   },
   weekDaysContainer:{
     flexDirection: 'row',
