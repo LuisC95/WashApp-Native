@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import {Text, View, TouchableOpacity, StyleSheet, Button} from 'react-native';
+import { useState, useRef  } from 'react';
+import {Text, View, TouchableOpacity, StyleSheet, Button, ScrollView, PanResponder} from 'react-native';
 import {DateTime} from 'luxon';
 import {currentWash} from './Service';
-import{Wash} from './Service';
 import {styles} from './statics-styles/schedule-styles';
 
 export class Date
@@ -51,42 +50,51 @@ export default function Schedule()
     const startOfMonth = DateTime.local(year, month, 1); //get the first day of the month and the number of days in the month
     const daysInMonth = startOfMonth.daysInMonth ?? 0; //daysInMonth is a propierty from luxon, it get the number of days from any month
 
+    const panResponder = useRef
+    (
+        PanResponder.create(
+            {
+                onMoveShouldSetPanResponder: (_, gestureState) => Math.abs(gestureState.dx) > 20,
+                onPanResponderRelease: (_, gestureState) => 
+                    {
+                    if (gestureState.dx > 20) {
+                        changeMonth('prev'); // Deslizar hacia la derecha -> mes anterior
+                    } else if (gestureState.dx < -20) {
+                        changeMonth('next'); // Deslizar hacia la izquierda -> mes siguiente
+                    }
+                },
+            })
+    ).current;
+
         //change month function
-        function changeMonth(direction: 'prev' | 'next')
+        function changeMonth(direction: 'prev' | 'next') 
         {
-            if(direction === 'prev')
-            {
-                setCDate(cDate.minus({ month: 1}))
-            }
-            else
-            {
-                setCDate(cDate.plus({ month: 1}))
-            }
-            
-        };
+            setCDate(prevDate => 
+                direction === 'prev' ? prevDate.minus({ months: 1 }) : prevDate.plus({ months: 1 })
+            );
+        }
+        
         let dateInfo: any;
-        function dateWashInfo()
+        function dateWashInfo(day: number): string 
         {
-            if(currentWash.dayDate != currentDate.dayDate)
-                {
-                    dateInfo = 'You did not wash this day:' + currentDate.month + ' - ' + currentDate.dayDate;
-                    
-                }
-            else
-                {
-                    dateInfo = 'you got a service this day and it was made it for: ' + currentWash.serviceEmployee;
-                }
+            if (currentWash.dayDate === day && currentWash.month === month) {
+                return (`You did wash at: ${month}/${day}/${year}\nService Status: ${currentWash.serviceStatus ? 'Done' : 'Pending'}\nService Number: ${currentWash.serviceNumber}\nService Employee: ${currentWash.serviceEmployee}\nService Hour: ${currentWash.hour}:${currentWash.minute}\nService Type: ${currentWash.serviceType}\nService Timming: ${currentWash.serviceTimming}\nService Rating: ${currentWash.serviceRating}\nService Feedback: ${currentWash.feedback}\nService Current Step: ${currentWash.serviceCurrentStep}\nService Recomendations: ${currentWash.recomendations}\n
+                `);
+            } else {
+                return `You did'n wash at: ${month}/${day}/${year}`;
+            }
         }
 
-        let usedStyle = styles.day;
+        let usedStyle = styles.regularDay;
         let usedStyleLetter = styles.washDayLetter;
+        
         function renderDays()
         {
             const days = [];
             let renderingDate = DateTime.local(year, month, 1);
             var keyDay = 0;
             var weekRow = 0;
-            dateWashInfo();
+            dateWashInfo(currentWash.dayDate);
             
             for (let day = 1; day <= daysInMonth; day++) 
                 {
@@ -99,28 +107,33 @@ export default function Schedule()
                     let dayNumber: any;
 
                     if (weekRow != weekDay && weekRow <= weekDay ) 
-                    {
-                        print = 0;
-                        day--;
-                    }
-                    else if (print == 0)
-                    {
-                        dayNumber = '';
-                    }
-                    else
-                    {
-                        dayNumber = day;
-                    }
-
-                    if(currentWash.dayDate == day && currentWash.month == renderingDate.month)
                         {
-                            usedStyle = styles.washDay;
-                            usedStyleLetter = styles.washDayLetter;
+                            print = 0;
+                            day--;
+                        }
+                    else if (print == 0)
+                        {
+                            dayNumber = '';
                         }
                     else
                         {
-                            usedStyle = styles.day;
-                            usedStyleLetter = styles.dayLetter;
+                            dayNumber = day;
+                        }
+
+                    if (currentWash.dayDate === day && currentWash.month === renderingDate.month) 
+                        {
+                            usedStyle = styles.washDay;
+                            usedStyleLetter = styles.washDayLetter;
+                        } 
+                    else if (currentWash.month !== renderingDate.month) 
+                        {
+                            usedStyle = styles.regularDay;
+                            usedStyleLetter = styles.regularDayLetter;
+                        } 
+                    else 
+                        {
+                            usedStyle = styles.regularDay;
+                            usedStyleLetter = styles.regularDayLetter;
                         }
 
                     days.push
@@ -150,8 +163,6 @@ export default function Schedule()
             currentDate.dayDate = day;
             setCDate(cDate.set({ day: currentDate.dayDate}));
             
-            
-            
         }
 
         let weekDaysName = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -165,27 +176,48 @@ export default function Schedule()
             ));
         }
 
-    return(
-        <View style={styles.container}>
-            {/* Header shows month and year */}
-            <View style={styles.header}>
+        // Renderizamos la información del día seleccionado
+        function renderInfo() {
+            if (selectDate !== null) {
+            const info = dateWashInfo(selectDate);
+            return (
+                <ScrollView /*style={styles.infoContainer}*/>
+                <Text>{info}</Text>
+                </ScrollView>
+            );
+            }
+            return null;
+        }
+
+
+
+        return (
+            <View style={styles.container}{...panResponder.panHandlers}>
+              {/* Cabecera con el mes y cambio de mes */}
+              <View style={styles.header}>
                 <TouchableOpacity onPress={() => changeMonth('prev')}>
-                    <Text style={styles.navButton}>◀</Text>
+                  <Text style={styles.navButton}>◀</Text>
                 </TouchableOpacity>
-                <Text style={styles.monthText}>
-                    {cDate.toFormat('MMMM yyyy')}
-                </Text>
+                <Text style={styles.monthText}>{cDate.toFormat('MMMM yyyy')}</Text>
                 <TouchableOpacity onPress={() => changeMonth('next')}>
-                    <Text style={styles.navButton}>▶</Text>
-                </TouchableOpacity> 
+                  <Text style={styles.navButton}>▶</Text>
+                </TouchableOpacity>
+              </View>
+              
+              {/* Fila de nombres de días */}
+              <View style={styles.weekDaysContainer}>
+                {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, index) => (
+                  <View key={index} style={styles.weekDayNames}>
+                    <Text>{day}</Text>
+                  </View>
+                ))}
+              </View>
+        
+              {/* Contenedor de días */}
+              <View style={styles.daysContainer}>{renderDays()}</View>
+        
+              {/* Información del día seleccionado */}
+              {renderInfo()}
             </View>
-                  {/* Fila que muestra los días de la semana */}
-            <View style={styles.weekDaysContainer}>
-                {weekDaysNameBar()}
-            </View>
-            {/* days container */}
-            <View style={styles.daysContainer}>{renderDays()}</View>
-            {/* <Button title='WeekDay' onPress={(d) => console.log(d)}></Button> */}
-        </View>
-        );
+          );
 }

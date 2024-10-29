@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     // backgroundColor: 'red',
   },
-  day: 
+  regularDay: 
   {
     width: 35,
     height: 40,
@@ -60,9 +60,9 @@ export const styles = StyleSheet.create({
   {
     color: 'white',
   },
-  dayLetter:
+  regularDayLetter:
   {
-    color: 'any',
+    color: '#ccc',
   },
   selectDay: 
   {
@@ -71,7 +71,6 @@ export const styles = StyleSheet.create({
   weekDayNames:{
     width: 35,
     alignItems: 'center',
-    backgroundColor: 'red',
   },
   weekDaysContainer:{
     flexDirection: 'row',

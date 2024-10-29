@@ -2,7 +2,6 @@ import { Text, View } from "react-native";
 import Service from "../components/statics-components/Service"; 
 import Schedule from "@/components/statics-components/Schedule-test";
 import { styles } from "./styles/static-screen-styles";
-
 export default function StaticsScreen() {
   return (
     <View
@@ -10,7 +9,6 @@ export default function StaticsScreen() {
     >
       
       <Schedule />
-      <Text>Statics Screen</Text>
       <Service />
     </View>
   );

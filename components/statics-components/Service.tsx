@@ -1,6 +1,5 @@
 import{ View, Text, Button } from "react-native";
-import { DateTime } from "luxon";
-import Schedule, { Date } from "./Schedule-test";
+import  { Date } from "./Schedule-test";
 
 export class Wash extends Date
 {
@@ -51,14 +50,14 @@ export class Wash extends Date
 export const currentWash = new Wash
     (
         104, 
-        'FS hw', 
+        'Full Service Hot Wax and Shine', 
         20, 
         'Andreina', 
         'Express hand wax', 
         5, 
         'abc', 
-        false, 
-        'enjoy',
+        true, 
+        'Enjoy your clean car!',
         21,
         10,
         2024,
