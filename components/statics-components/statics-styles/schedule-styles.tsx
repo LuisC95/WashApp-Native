@@ -1,6 +1,4 @@
 import { StyleSheet } from "react-native";
-import { red } from "react-native-reanimated/lib/typescript/Colors";
-
 
   
 export const styles = StyleSheet.create({
@@ -45,18 +43,39 @@ export const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 5,
   },
+  washDay: 
+  {
+    width: 35,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 5,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    backgroundColor: '#002e62',
+    color: '#fff',
+  },
+  washDayLetter:
+  {
+    color: 'white',
+  },
+  dayLetter:
+  {
+    color: 'any',
+  },
   selectDay: 
   {
       backgroundColor: 'blue', // El día seleccionado cambia a azul
   },
   weekDayNames:{
-    width: 40,
+    width: 35,
     alignItems: 'center',
     backgroundColor: 'red',
   },
   weekDaysContainer:{
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     marginBottom: 10,
   },
 });

@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import {Text, View, TouchableOpacity, StyleSheet, Button} from 'react-native';
 import {DateTime} from 'luxon';
-import {Wash, currentWash} from './Service';
+import {currentWash} from './Service';
+import{Wash} from './Service';
 import {styles} from './statics-styles/schedule-styles';
 
 export class Date
 {
-    day: number;
+    dayDate: number;
     month: number; 
     year: number; 
     weekDay: number; 
@@ -15,7 +16,7 @@ export class Date
 
     constructor
     (
-        day: number,
+        dayDate: number,
         month: number, 
         year: number, 
         weekDay: number, 
@@ -23,7 +24,7 @@ export class Date
         minute: number, 
     )
     {
-        this.day = day;
+        this.dayDate = dayDate;
         this.month = month;
         this.year = year; 
         this.weekDay = weekDay;
@@ -63,14 +64,29 @@ export default function Schedule()
             }
             
         };
+        let dateInfo: any;
+        function dateWashInfo()
+        {
+            if(currentWash.dayDate != currentDate.dayDate)
+                {
+                    dateInfo = 'You did not wash this day:' + currentDate.month + ' - ' + currentDate.dayDate;
+                    
+                }
+            else
+                {
+                    dateInfo = 'you got a service this day and it was made it for: ' + currentWash.serviceEmployee;
+                }
+        }
 
+        let usedStyle = styles.day;
+        let usedStyleLetter = styles.washDayLetter;
         function renderDays()
         {
             const days = [];
             let renderingDate = DateTime.local(year, month, 1);
             var keyDay = 0;
             var weekRow = 0;
-            let weekDaysNames = ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday', 'Sunday'];
+            dateWashInfo();
             
             for (let day = 1; day <= daysInMonth; day++) 
                 {
@@ -96,18 +112,31 @@ export default function Schedule()
                         dayNumber = day;
                     }
 
+                    if(currentWash.dayDate == day && currentWash.month == renderingDate.month)
+                        {
+                            usedStyle = styles.washDay;
+                            usedStyleLetter = styles.washDayLetter;
+                        }
+                    else
+                        {
+                            usedStyle = styles.day;
+                            usedStyleLetter = styles.dayLetter;
+                        }
+
                     days.push
                     (
                         <TouchableOpacity
                             key={keyDay}
-                            style={[styles.day]}
+                            style={usedStyle}
                             onPress={() => 
                                 {
                                     dateSelection(day);
-                                    console.log(currentWash.serviceEmployee);
+                                    console.log(dateInfo);
                                 }}
                         >
-                            <Text>{dayNumber}</Text>                            
+                            <Text
+                                style={usedStyleLetter}
+                            >{dayNumber}</Text>                            
                         </TouchableOpacity>
                     )
                 }
@@ -118,8 +147,8 @@ export default function Schedule()
         function dateSelection(day: number)
         {
             setSelectDate(day);
-            currentDate.day = day;
-            setCDate(cDate.set({ day: currentDate.day}));
+            currentDate.dayDate = day;
+            setCDate(cDate.set({ day: currentDate.dayDate}));
             
             
             

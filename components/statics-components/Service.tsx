@@ -1,7 +1,8 @@
 import{ View, Text, Button } from "react-native";
 import { DateTime } from "luxon";
+import Schedule, { Date } from "./Schedule-test";
 
-export class Wash
+export class Wash extends Date
 {
     serviceNumber: number;
     serviceType: string;
@@ -14,7 +15,7 @@ export class Wash
     serviceCurrentStep: string;
     
 
-    constructor
+    constructor 
     (
         serviceNumber:number, 
         serviceType:string, 
@@ -24,9 +25,17 @@ export class Wash
         serviceRating:number, 
         feedback:string,
         serviceStatus:boolean,
-        serviceCurrentStep: string
+        serviceCurrentStep: string,
+        dayDate: number,
+        month: number,
+        year: number,
+        weekDay: number,
+        hour: number,
+        minute: number,
+
     )
     {
+        super( dayDate, month, year, weekDay, hour, minute);
         this.serviceNumber = serviceNumber;
         this.serviceType = serviceType; 
         this.serviceTimming = serviceTimming;
@@ -49,7 +58,13 @@ export const currentWash = new Wash
         5, 
         'abc', 
         false, 
-        'enjoy'
+        'enjoy',
+        21,
+        10,
+        2024,
+        2,
+        10,
+        25,
     );
 
 export default function ServiceInfo()
