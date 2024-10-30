@@ -1,7 +1,7 @@
 import { useState, useRef  } from 'react';
 import {Text, View, TouchableOpacity, StyleSheet, Button, ScrollView, PanResponder} from 'react-native';
 import {DateTime} from 'luxon';
-import {currentWash} from './Service';
+import {washServices} from './Service';
 import {styles} from './statics-styles/schedule-styles';
 
 export class Date
@@ -74,19 +74,18 @@ export default function Schedule()
             );
         }
         
-        let dateInfo: any;
-        function dateWashInfo(day: number): string 
-        {
-            if (currentWash.dayDate === day && currentWash.month === month) {
-                return (`You did wash at: ${month}/${day}/${year}\nService Status: ${currentWash.serviceStatus ? 'Done' : 'Pending'}\nService Number: ${currentWash.serviceNumber}\nService Employee: ${currentWash.serviceEmployee}\nService Hour: ${currentWash.hour}:${currentWash.minute}\nService Type: ${currentWash.serviceType}\nService Timming: ${currentWash.serviceTimming}\nService Rating: ${currentWash.serviceRating}\nService Feedback: ${currentWash.feedback}\nService Current Step: ${currentWash.serviceCurrentStep}\nService Recomendations: ${currentWash.recomendations}\n
-                `);
+        let dateInfo: string = '';
+        
+        function dateWashInfo(day: number): string {
+            const service = washServices.find(service => service.dayDate === day && service.month === month);
+            if (service) {
+                return (`You did a wash at: ${month}/${day}/${year}\nService Status: ${service.serviceStatus ? 'Done' : 'Pending'}\nService Number: ${service.serviceNumber}\nService Employee: ${service.serviceEmployee}\nService Hour: ${service.hour}:${service.minute}\nService Type: ${service.serviceType}\nService Timming: ${service.serviceTimming}\nService Rating: ${service.serviceRating}\nService Feedback: ${service.feedback}\nService Current Step: ${service.serviceCurrentStep}\nService Recomendations: ${service.recomendations}\n`);
             } else {
-                return `You did'n wash at: ${month}/${day}/${year}`;
+                return `You didn't wash at: ${month}/${day}/${year}`;
             }
         }
 
-        let usedStyle = styles.regularDay;
-        let usedStyleLetter = styles.washDayLetter;
+
         
         function renderDays()
         {
@@ -94,17 +93,39 @@ export default function Schedule()
             let renderingDate = DateTime.local(year, month, 1);
             var keyDay = 0;
             var weekRow = 0;
-            dateWashInfo(currentWash.dayDate);
+           
             
             for (let day = 1; day <= daysInMonth; day++) 
                 {
                     const updatedDate = renderingDate.set({day});
                     let weekDay = updatedDate.weekday;
+                    const service = washServices.find(s => s.dayDate === day && s.month === month);
+
+                    // Restart the style in each iteration
+                    let usedStyle = styles.regularDay;
+                    let usedStyleLetter = styles.washDayLetter;
+
+                        // style adjustment verification
+                    if (service) 
+                        {
+                            usedStyle = styles.washDay;
+                            usedStyleLetter = styles.washDayLetter;
+                        } 
+                    else if (updatedDate.month !== month) 
+                        {
+                            usedStyle = styles.regularDay;
+                        }
+                    else 
+                        {
+                            usedStyle = styles.regularDay;
+                            usedStyleLetter = styles.regularDayLetter;
+                        }
                     
                     keyDay++;
                     weekRow++;
                     var print = day;
                     let dayNumber: any;
+
 
                     if (weekRow != weekDay && weekRow <= weekDay ) 
                         {
@@ -118,22 +139,6 @@ export default function Schedule()
                     else
                         {
                             dayNumber = day;
-                        }
-
-                    if (currentWash.dayDate === day && currentWash.month === renderingDate.month) 
-                        {
-                            usedStyle = styles.washDay;
-                            usedStyleLetter = styles.washDayLetter;
-                        } 
-                    else if (currentWash.month !== renderingDate.month) 
-                        {
-                            usedStyle = styles.regularDay;
-                            usedStyleLetter = styles.regularDayLetter;
-                        } 
-                    else 
-                        {
-                            usedStyle = styles.regularDay;
-                            usedStyleLetter = styles.regularDayLetter;
                         }
 
                     days.push

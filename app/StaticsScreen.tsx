@@ -7,9 +7,7 @@ export default function StaticsScreen() {
     <View
       style={[styles.screenContainer]}
     >
-      
       <Schedule />
-      <Service />
     </View>
   );
 }
