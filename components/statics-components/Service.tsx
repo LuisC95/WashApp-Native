@@ -1,7 +1,7 @@
 import{ View, Text, Button } from "react-native";
-import  { Date } from "./Schedule-test";
+import  { Calendar } from "./Schedule-test";
 
-export class Wash extends Date
+export class Wash extends Calendar
 {
     serviceNumber: number;
     serviceType: string;
@@ -34,7 +34,7 @@ export class Wash extends Date
 
     )
     {
-        super( dayDate, month, year, weekDay, hour, minute);
+        super(dayDate, month, year, weekDay, hour, minute);
         this.serviceNumber = serviceNumber;
         this.serviceType = serviceType; 
         this.serviceTimming = serviceTimming;

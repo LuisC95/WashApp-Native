@@ -1,6 +1,5 @@
 import { Text, View } from "react-native";
 import  StaticsButton  from "../components/statics-components/StaticsButton";
-import { Stack } from "expo-router";
 
 export default function Index() {
   return (

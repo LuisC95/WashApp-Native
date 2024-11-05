@@ -4,7 +4,7 @@ import {DateTime} from 'luxon';
 import {washServices} from './Service';
 import {styles} from './statics-styles/schedule-styles';
 
-export class Date
+export class Calendar
 {
     dayDate: number;
     month: number; 
@@ -35,7 +35,7 @@ export class Date
 export default function Schedule()
 {
     const [cDate, setCDate] = useState(DateTime.local()); //state used to save current month and year
-    var currentDate = new Date //object created as current date from state
+    var currentDate = new Calendar //object created as current date from state
     (
         cDate.day,
         cDate.month,

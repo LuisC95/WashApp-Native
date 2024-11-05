@@ -9,6 +9,9 @@ class MembershipUser
     membershipType: string;
     serviceActive: boolean;
     currentService: string;
+    carBrand: string;
+    carModel: string;
+    carYear: number
     
     constructor
     (
@@ -20,6 +23,9 @@ class MembershipUser
       membershipType: string,
       serviceActive: boolean,
       currentService: string,
+      carBrand: string,
+      carModel: string,
+      carYear: number
     )
         {
             this.firstName = firstName;
@@ -30,6 +36,9 @@ class MembershipUser
             this.membershipType = membershipType;
             this.serviceActive = serviceActive;
             this.currentService = currentService;
+            this.carBrand = carBrand;
+            this.carModel = carModel;   
+            this.carYear = carYear;
             
         }
 }
