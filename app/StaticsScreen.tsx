@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import Schedule from "@/components/statics-components/Schedule-test";
+import Schedule from "@/components/statics-components/Schedule";
 import { styles } from "./styles/static-screen-styles";
 import React from "react";
 
