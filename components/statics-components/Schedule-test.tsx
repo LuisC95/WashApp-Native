@@ -1,36 +1,11 @@
+import React from 'react';
+import { washServices} from './Service';
 import { useState, useRef  } from 'react';
-import {Text, View, TouchableOpacity, StyleSheet, Button, ScrollView, PanResponder} from 'react-native';
+import {Text, View, TouchableOpacity, ScrollView, PanResponder} from 'react-native';
 import {DateTime} from 'luxon';
-import {washServices} from './Service';
 import {styles} from './statics-styles/schedule-styles';
+import { Calendar } from './Calendar';
 
-export class Calendar
-{
-    dayDate: number;
-    month: number; 
-    year: number; 
-    weekDay: number; 
-    hour: number; 
-    minute: number; 
-
-    constructor
-    (
-        dayDate: number,
-        month: number, 
-        year: number, 
-        weekDay: number, 
-        hour: number, 
-        minute: number, 
-    )
-    {
-        this.dayDate = dayDate;
-        this.month = month;
-        this.year = year; 
-        this.weekDay = weekDay;
-        this.hour = hour;
-        this.minute = minute;
-    }
-}
 
 export default function Schedule()
 {
@@ -149,7 +124,6 @@ export default function Schedule()
                             onPress={() => 
                                 {
                                     dateSelection(day);
-                                    console.log(dateInfo);
                                 }}
                         >
                             <Text

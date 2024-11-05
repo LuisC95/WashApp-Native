@@ -1,9 +1,9 @@
 import { Button, View } from "react-native";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
+import React from "react";
 
 export default function StaticsButton() 
 {
-    const router = useRouter();
     return(
         <View>
             <Button title="Go to Statics" onPress={() => router.push("./StaticsScreen")} /> 
