@@ -1,6 +1,7 @@
 import { Memberships } from "../memberships-components/membershipGlobalObject";
+import { State } from "react-native-gesture-handler";
 
-class User extends Memberships
+export class User extends Memberships
 {
     firstName: string;
     lastName: string;
@@ -37,3 +38,19 @@ class User extends Memberships
             
         }
 }
+
+export const defUser = new User
+(
+  'Name', 
+  'LastName', 
+  12345678900, 
+  'youremail@email.com', 
+  'Toyota', 
+  'Camry', 
+  2020, 
+  70142803526, 
+  1, 
+  24.99, 
+  false, 
+  'Exterior wheels and shine'
+);
