@@ -11,8 +11,10 @@ export default function Profile() {
         setIsEditing(!isEditing);
     };
 
-    const handleChange = (field: keyof User, value: string) => {
-        setUser((prevUser) => ({
+    function handleChange(field: keyof User, value: string)
+    {
+        setUser((prevUser) => 
+        ({
             ...prevUser,
             [field]: value,
         }));
@@ -50,10 +52,9 @@ export default function Profile() {
             ))}
             {/* Renderizar los campos no editables */}
             <Text>Membership Code: {user.code}</Text>
-            <Text>Membership Level: {user.level}</Text>
             <Text>Membership Price: {user.price}</Text>
             <Text>Interior Confirmation: {user.interiorConfirmation}</Text>
-            <Text>Service: {user.service}</Text>
+            <Text>Membership Service: {user.service}</Text>
         </View>
     );
 }
