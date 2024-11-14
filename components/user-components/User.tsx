@@ -1,5 +1,4 @@
 import { Memberships } from "../memberships-components/membershipGlobalObject";
-import { State } from "react-native-gesture-handler";
 
 export class User extends Memberships
 {

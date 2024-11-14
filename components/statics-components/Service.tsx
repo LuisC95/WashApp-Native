@@ -1,6 +1,8 @@
 import React from "react";
 import  { Calendar } from "./Calendar";
-
+import  Profile  from '../user-components/Profile'
+import { defUser, User } from '../user-components/User'
+import { DateTime } from "luxon";
 
 export class Wash extends Calendar
 {
@@ -55,3 +57,30 @@ export const washServices: Wash[] =
     new Wash(7, 10, 2024, 2, 10, 25, 487, 'Full Service Hot Wax and Shine', 15, 'Orlando', 'ultimate interior', 5, 'abc', true, 'Enjoy your clean car!' ),
     new Wash(25, 10, 2024, 2, 10, 25, 576, 'Full Service Hot Wax and Shine', 20, 'Marializ', 'Express hand wax', 5, 'abc', true, 'Enjoy your clean car!' ),
 ];
+
+const currentTime = DateTime.local();
+
+export function washRegistration()
+{
+    washServices.push
+    (
+        new Wash
+        (
+            currentTime.day, 
+            currentTime.month, 
+            currentTime.year, 
+            currentTime.weekday, 
+            currentTime.hour, 
+            currentTime.minute, 
+            576, 
+            defUser.service, 
+            20, 
+            'Marializ', 
+            'Express hand wax', 
+            5, 
+            'abc', 
+            true, 
+            'Enjoy your clean car!' 
+        )
+    );
+}
