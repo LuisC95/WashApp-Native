@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import  { Calendar } from "./Calendar";
 import  Profile  from '../user-components/Profile'
 import { defUser, User } from '../user-components/User'
+import washNumber  from '../user-components/wash-registration';
 import { DateTime } from "luxon";
 
 export class Wash extends Calendar
@@ -60,27 +61,37 @@ export const washServices: Wash[] =
 
 const currentTime = DateTime.local();
 
-export function washRegistration()
+export function serviceRegistration()
 {
-    washServices.push
-    (
-        new Wash
+    if (currentWashNumber !== null) {
+        washServices.push
         (
-            currentTime.day, 
-            currentTime.month, 
-            currentTime.year, 
-            currentTime.weekday, 
-            currentTime.hour, 
-            currentTime.minute, 
-            576, 
-            defUser.service, 
-            20, 
-            'Marializ', 
-            'Express hand wax', 
-            5, 
-            'abc', 
-            true, 
-            'Enjoy your clean car!' 
-        )
-    );
+            new Wash
+            (
+                currentTime.day, 
+                currentTime.month, 
+                currentTime.year, 
+                currentTime.weekday, 
+                currentTime.hour, 
+                currentTime.minute, 
+                currentWashNumber, 
+                defUser.service, 
+                20, 
+                'Andreina', 
+                'Express hand wax', 
+                5, 
+                'abc', 
+                true, 
+                'Enjoy your clean car!' 
+            )
+        );
+    } else {
+        console.error("currentWashNumber is null");
+    }
 }
+
+export let currentWashNumber: number | null = null;
+
+export const setCurrentWashNumber = (value: number | null) => {
+  currentWashNumber = value;
+};

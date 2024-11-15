@@ -36,25 +36,25 @@ export default function Profile() {
                 {/* Botón de editar en la parte superior */}
                 <TouchableOpacity onPress={handleEditToggle} style={{ alignSelf: 'flex-end', margin: 10 }}>
                 <FontAwesome name="pencil" size={24} color={isEditing ? "red" : "blue"} />
-            </TouchableOpacity>
-            {editableFields.map((item, index) => (
-                <View key={index} style={{ marginBottom: 10 }}>
-                    {isEditing ? (
-                        <TextInput
-                            style={{ borderBottomWidth: 1, padding: 5 }}
-                            value={user[item.field]?.toString()}
-                            onChangeText={(text) => handleChange(item.field, text)}
-                        />
-                    ) : (
-                        <Text>{`${item.label}: ${user[item.field]}`}</Text>
-                    )}
-                </View>
-            ))}
-            {/* Renderizar los campos no editables */}
-            <Text>Membership Code: {user.code}</Text>
-            <Text>Membership Price: {user.price}</Text>
-            <Text>Interior Confirmation: {user.interiorConfirmation}</Text>
-            <Text>Membership Service: {user.service}</Text>
-        </View>
+                </TouchableOpacity>
+                {editableFields.map((item, index) => (
+                    <View key={index} style={{ marginBottom: 10 }}>
+                        {isEditing ? (
+                            <TextInput
+                                style={{ borderBottomWidth: 1, padding: 5 }}
+                                value={user[item.field]?.toString()}
+                                onChangeText={(text) => handleChange(item.field, text)}
+                            />
+                        ) : (
+                            <Text>{`${item.label}: ${user[item.field]}`}</Text>
+                        )}
+                    </View>
+                ))}
+                {/* Renderizar los campos no editables */}
+                <Text>Membership Code: {user.code}</Text>
+                <Text>Membership Price: {user.price}</Text>
+                <Text>Interior Confirmation: {user.interiorConfirmation}</Text>
+                <Text>Membership Service: {user.service}</Text>
+            </View>
     );
 }
