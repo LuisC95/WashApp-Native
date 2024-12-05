@@ -51,5 +51,5 @@ export const defUser = new User
   1, 
   24.99, 
   false, 
-  'Exterior wheels and shine'
+  'Full Service Manager Special'
 );
