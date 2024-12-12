@@ -34,6 +34,30 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "expo": {
+    "androidStatusBar": {
+      "hidden": true,
+      "backgroundColor": "#000000",
+      "barStyle": "light-content"
+      }
+    },
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "dependencies": {
+      "expo": "~44.0.0",
+      "expo-status-bar": "~1.1.0",
+      "react": "17.0.2",
+      "react-dom": "17.0.2",
+      "react-native": "0.64.3",
+      "react-native-web": "0.17.1"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.9.0"
+    },
+    "private": true
   }
 }

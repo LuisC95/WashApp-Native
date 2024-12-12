@@ -1,13 +1,14 @@
-import { Button, View } from "react-native";
+import { TouchableOpacity, Image  } from "react-native";
 import { router } from "expo-router";
 import React from "react";
+import { styles } from "./statics-styles/statics-button-styles";
 
 export default function StaticsButton() 
 {
     return(
-        <View>
-            <Button title="Go to Statics" onPress={() => router.push("./StaticsScreen")} /> 
-        </View>
+        <TouchableOpacity style={styles.staticsButton} onPress={() => router.push("./StaticsScreen")}>
+            <Image source={require('../../assets/images/shedule.png')} style={styles.staticsButtonText}/>
+        </TouchableOpacity>
     );
 
 }

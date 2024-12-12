@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, Button } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from '@/app/styles/wash-registration-styles';
 import { setCurrentWashNumber, serviceRegistration } from '../statics-components/Service';
 
@@ -30,8 +30,9 @@ export default function WashRegistration()
                     placeholderTextColor="#888" // Color del placeholder
                     keyboardType='numeric' // Tipo de teclado
                 />
-                <Text> </Text>
-                <Button title="Submit" onPress={() =>  { serviceRegistration()}} />
+                <TouchableOpacity style={styles.registrationButton} onPress={() => { serviceRegistration() }}>
+                    <Text style={styles.buttonText}>{'>'}</Text>
+                </TouchableOpacity>
             </View>
         );
 }

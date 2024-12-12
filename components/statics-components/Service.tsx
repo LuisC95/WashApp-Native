@@ -4,6 +4,7 @@ import  Profile  from '../user-components/Profile'
 import { defUser, User } from '../user-components/User'
 import washNumber  from '../user-components/wash-registration';
 import { DateTime } from "luxon";
+import { router } from "expo-router";
 
 export class Wash extends Calendar
 {
@@ -85,6 +86,8 @@ export function serviceRegistration()
                 'Enjoy your clean car!' 
             )
         );
+        // router.push('../../app/StaticsScreen');
+
     } else {
         console.error("currentWashNumber is null");
     }
