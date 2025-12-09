@@ -103,7 +103,7 @@ export const styles = StyleSheet.create(
         washTracking:
         {
             display: 'flex',
-            height: '21.5%',
+            minHeight: '21.5%',
             width: '100%',
             backgroundColor: '#52CC52',
             borderRadius: 20,

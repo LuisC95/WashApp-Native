@@ -120,46 +120,41 @@ export default function WashTrackingVisual() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         borderRadius: 12,
-        padding: 16,
-        marginHorizontal: 16,
-        marginVertical: 8,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3,
+        padding: 12,
+        paddingHorizontal: 8,
+        flex: 1,
     },
 
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 20,
-        paddingBottom: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#e0e0e0',
+        marginBottom: 12,
+        paddingBottom: 8,
+        borderBottomWidth: 2,
+        borderBottomColor: '#000E1F',
     },
 
     headerTitle: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
         color: '#000E1F',
     },
 
     serviceNumber: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: '#52CC52',
+        fontSize: 15,
+        fontWeight: '700',
+        color: '#000E1F',
     },
 
     trackingContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginBottom: 20,
-        paddingHorizontal: 4,
+        marginBottom: 12,
+        paddingHorizontal: 2,
     },
 
     stepWrapper: {
@@ -168,15 +163,15 @@ const styles = StyleSheet.create({
     },
 
     circle: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
+        width: 40,
+        height: 40,
+        borderRadius: 20,
         borderWidth: 3,
         borderColor: '#d0d0d0',
         backgroundColor: '#f5f5f5',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 8,
+        marginBottom: 6,
     },
 
     circleActive: {
@@ -185,13 +180,13 @@ const styles = StyleSheet.create({
     },
 
     circleCurrent: {
-        borderColor: '#52CC52',
-        backgroundColor: '#e8f8f0',
-        shadowColor: '#52CC52',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.4,
-        shadowRadius: 8,
-        elevation: 6,
+        borderColor: '#fff',
+        backgroundColor: '#000E1F',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 4,
     },
 
     circleEmpty: {
@@ -202,34 +197,34 @@ const styles = StyleSheet.create({
     },
 
     emoji: {
-        fontSize: 20,
+        fontSize: 18,
     },
 
     label: {
-        fontSize: 11,
-        color: '#888',
+        fontSize: 10,
+        color: '#666',
         textAlign: 'center',
         fontWeight: '500',
-        maxWidth: 60,
+        maxWidth: 55,
     },
 
     labelActive: {
         color: '#000E1F',
-        fontWeight: '600',
+        fontWeight: '700',
     },
 
     lineWrapper: {
         flex: 1,
-        height: 44,
+        height: 40,
         justifyContent: 'center',
         alignItems: 'center',
-        marginHorizontal: 2,
+        marginHorizontal: 1,
     },
 
     line: {
         height: 3,
         width: '100%',
-        backgroundColor: '#d0d0d0',
+        backgroundColor: '#a0a0a0',
         borderRadius: 2,
     },
 
@@ -238,10 +233,10 @@ const styles = StyleSheet.create({
     },
 
     infoContainer: {
-        backgroundColor: '#f8f9fa',
+        backgroundColor: 'rgba(0, 14, 31, 0.1)',
         borderRadius: 8,
-        padding: 12,
-        gap: 8,
+        padding: 10,
+        gap: 6,
     },
 
     infoRow: {
@@ -251,14 +246,14 @@ const styles = StyleSheet.create({
     },
 
     infoLabel: {
-        fontSize: 13,
-        color: '#666',
+        fontSize: 11,
+        color: '#000E1F',
         fontWeight: '500',
     },
 
     infoValue: {
-        fontSize: 13,
+        fontSize: 11,
         color: '#000E1F',
-        fontWeight: '600',
+        fontWeight: '700',
     },
 });
