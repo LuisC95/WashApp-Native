@@ -53,6 +53,21 @@ export default function CurrentServiceStatus() {
         }
     };
 
+    /**
+     * Determina si un estado debe estar completo en la barra de progreso
+     */
+    const isStatusComplete = (status: ServiceStatusEnum, currentStatus: ServiceStatusEnum): boolean => {
+        const statusOrder = [
+            ServiceStatusEnum.TUNNEL_WASH,
+            ServiceStatusEnum.QUEUED,
+            ServiceStatusEnum.IN_PROGRESS,
+            ServiceStatusEnum.COMPLETED
+        ];
+        const currentIndex = statusOrder.indexOf(currentStatus);
+        const statusIndex = statusOrder.indexOf(status);
+        return statusIndex <= currentIndex;
+    };
+
     const latestService = getLatestService();
 
     // Si no hay servicios, mostrar un mensaje
@@ -159,11 +174,9 @@ export default function CurrentServiceStatus() {
                             style={[
                                 styles.progressStep,
                                 {
-                                    backgroundColor:
-                                        latestService.serviceStatus.currentStatus === status ||
-                                        (latestService.serviceStatus.currentStatus === ServiceStatusEnum.COMPLETED)
-                                            ? getStatusColor(status)
-                                            : '#e0e0e0'
+                                    backgroundColor: isStatusComplete(status, latestService.serviceStatus.currentStatus)
+                                        ? getStatusColor(status)
+                                        : '#e0e0e0'
                                 }
                             ]}
                         />
