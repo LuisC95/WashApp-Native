@@ -57,24 +57,23 @@ export const styles = StyleSheet.create(
         {
             display: 'flex',
             flex: 1,
-            // justifyContent: 'flex-start',
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '100%',
             height: '62.8%',
-            // backgroundColor: 'transparent',
-            // borderStyle: 'solid',
-            // borderWidth: 3,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
             position: 'absolute',
             bottom: 0,
             paddingLeft: 20, 
             paddingRight: 20,
+            paddingTop: 10,
+            paddingBottom: 10,
+            gap: 10,
         },
         loyaltyProgram:
         {
-            height: '9.6%',
+            minHeight: '9.6%',
             width: '100%',
             backgroundColor: '#002E62',
             justifyContent: 'flex-start',
@@ -120,12 +119,11 @@ export const styles = StyleSheet.create(
             },
         servicesMenu:
         {
-            height: '17.3%',
+            minHeight: '17.3%',
             width: '100%',
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            // backgroundColor: '#002E62',
         },
             servicesMenuExteriorButton:
             {
@@ -206,12 +204,12 @@ export const styles = StyleSheet.create(
             // },
         servicesInformation:
         {
-            height: '40.6%',
+            minHeight: '40.6%',
+            flex: 1,
             width: '100%',
             borderWidth: 3,
             borderColor: '#52CC52',
             borderRadius: 30,
-            marginBottom: 20,
         },
         exteriorButtonLogo:
         {
