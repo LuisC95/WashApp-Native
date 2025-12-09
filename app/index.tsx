@@ -15,6 +15,8 @@ import StaticsButton from "../components/statics-components/StaticsButton";
 import WashRegistration from "@/components/user-components/wash-registration";
 import { styles } from "./styles/index-styles";
 import WashRegistrationButton from "@/components/user-components/wash-registration-button";
+import WashTrackingVisual from "@/components/statics-components/WashTrackingVisual";
+import { hasWashToday } from "@/components/statics-components/Service";
 
 export default function Index() {
   return (
@@ -44,14 +46,20 @@ export default function Index() {
                   <StaticsButton />
                 </View>
                 <View style={styles.washTracking}>
-                  <View>
-                    <Text style={styles.washTrackingTitleText}>
-                      Wash Tracking
-                    </Text>
-                  </View>
-                  <View>
-                    <WashRegistrationButton />
-                  </View>
+                  {!hasWashToday() ? (
+                    <>
+                      <View>
+                        <Text style={styles.washTrackingTitleText}>
+                          Wash Tracking
+                        </Text>
+                      </View>
+                      <View>
+                        <WashRegistrationButton />
+                      </View>
+                    </>
+                  ) : (
+                    <WashTrackingVisual />
+                  )}
                 </View>
                 <View style={styles.servicesMenu}>
                   <TouchableOpacity
