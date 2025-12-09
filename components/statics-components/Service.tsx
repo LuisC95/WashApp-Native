@@ -176,3 +176,24 @@ export let currentWashNumber: number | null = null;
 export const setCurrentWashNumber = (value: number | null) => {
   currentWashNumber = value;
 };
+
+/**
+ * Verifica si hay un servicio registrado para hoy
+ * @returns true si hay al menos un servicio registrado en el día de hoy
+ */
+export const hasWashToday = (): boolean => {
+    const today = DateTime.local();
+    return washServices.some(wash => 
+        wash.dayDate === today.day && 
+        wash.month === today.month && 
+        wash.year === today.year
+    );
+};
+
+/**
+ * Obtiene el último servicio registrado si existe
+ * @returns El servicio más reciente o null si no hay ninguno
+ */
+export const getLastWash = (): Wash | null => {
+    return washServices.length > 0 ? washServices[washServices.length - 1] : null;
+};
