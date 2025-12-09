@@ -11,10 +11,10 @@ import { router } from "expo-router";
  * Define el ciclo de vida completo de un servicio de lavado
  */
 export enum ServiceStatusEnum {
-    TUNNEL_WASH = 'tunnel_wash',              // Lavado en túnel automático
-    QUEUED = 'queued',                        // En cola esperando servicio interior
-    IN_PROGRESS = 'in_progress',              // Servicio interior/detailing en progreso
-    COMPLETED = 'completed'                   // Servicio completado
+    TUNNEL_WASH = 'tunnel_wash',              // Automatic tunnel wash
+    QUEUED = 'queued',                        // Queued waiting for interior service
+    IN_PROGRESS = 'in_progress',              // Interior/detailing service in progress
+    COMPLETED = 'completed'                   // Service completed
 }
 
 /**
@@ -23,18 +23,18 @@ export enum ServiceStatusEnum {
  */
 export class ServiceStatus 
 {
-    serviceId: number;           // ID único del servicio
-    currentStatus: ServiceStatusEnum;     // Estado actual del servicio
-    statusHistory: {             // Historial completo de cambios de estado
+    serviceId: number;           // Unique service ID
+    currentStatus: ServiceStatusEnum;     // Current service status
+    statusHistory: {             // Complete history of status changes
         status: ServiceStatusEnum;
         timestamp: DateTime;
         notes?: string;
     }[];
 
     /**
-     * Constructor de ServiceStatus
-     * @param serviceId - ID único del servicio
-     * @param initialStatus - Estado inicial (por defecto TUNNEL_WASH)
+     * ServiceStatus constructor
+     * @param serviceId - Unique service ID
+     * @param initialStatus - Initial status (default TUNNEL_WASH)
      */
     constructor(serviceId: number, initialStatus: ServiceStatusEnum = ServiceStatusEnum.TUNNEL_WASH) {
         this.serviceId = serviceId;
@@ -49,9 +49,9 @@ export class ServiceStatus
     }
 
     /**
-     * Actualiza el estado del servicio y registra el cambio en el historial
-     * @param newStatus - Nuevo estado del servicio
-     * @param notes - Notas opcionales sobre el cambio
+     * Updates service status and records change in history
+     * @param newStatus - New service status
+     * @param notes - Optional notes about the change
      */
     updateStatus(newStatus: ServiceStatusEnum, notes?: string): void {
         this.currentStatus = newStatus;
@@ -63,21 +63,21 @@ export class ServiceStatus
     }
 
     /**
-     * Obtiene el nombre legible del estado actual
-     * @returns Nombre del estado en formato legible
+     * Gets the readable name of the current status
+     * @returns Status name in readable format
      */
     getStatusLabel(): string {
         const statusLabels: Record<ServiceStatusEnum, string> = {
-            [ServiceStatusEnum.TUNNEL_WASH]: 'Lavado en Túnel',
-            [ServiceStatusEnum.QUEUED]: 'En Cola',
-            [ServiceStatusEnum.IN_PROGRESS]: 'En Progreso',
-            [ServiceStatusEnum.COMPLETED]: 'Completado'
+            [ServiceStatusEnum.TUNNEL_WASH]: 'Tunnel Wash',
+            [ServiceStatusEnum.QUEUED]: 'Queued',
+            [ServiceStatusEnum.IN_PROGRESS]: 'In Progress',
+            [ServiceStatusEnum.COMPLETED]: 'Completed'
         };
         return statusLabels[this.currentStatus];
     }
 
     /**
-     * Obtiene el historial completo de cambios de estado
+     * Gets the complete history of status changes
      */
     getStatusHistory() {
         return this.statusHistory;
@@ -160,7 +160,7 @@ export function serviceRegistration()
                 'Express hand wax', 
                 5, 
                 'abc', 
-                ServiceStatusEnum.TUNNEL_WASH,    // Nuevo servicio comienza en TUNNEL_WASH
+                ServiceStatusEnum.COMPLETED,    // New service starts at TUNNEL_WASH
                 'Enjoy your clean car!' 
             )
         );
@@ -178,8 +178,8 @@ export const setCurrentWashNumber = (value: number | null) => {
 };
 
 /**
- * Verifica si hay un servicio registrado para hoy
- * @returns true si hay al menos un servicio registrado en el día de hoy
+ * Checks if there is a registered service for today
+ * @returns true if there is at least one service registered on today
  */
 export const hasWashToday = (): boolean => {
     const today = DateTime.local();
@@ -191,8 +191,8 @@ export const hasWashToday = (): boolean => {
 };
 
 /**
- * Obtiene el último servicio registrado si existe
- * @returns El servicio más reciente o null si no hay ninguno
+ * Gets the last registered service if it exists
+ * @returns The most recent service or null if there is none
  */
 export const getLastWash = (): Wash | null => {
     return washServices.length > 0 ? washServices[washServices.length - 1] : null;

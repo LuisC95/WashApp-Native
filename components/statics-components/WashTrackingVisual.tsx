@@ -20,10 +20,10 @@ export default function WashTrackingVisual() {
      * Define los 4 estados del servicio con sus etiquetas
      */
     const statusSteps = [
-        { status: ServiceStatusEnum.TUNNEL_WASH, label: 'Túnel', emoji: '💧' },
-        { status: ServiceStatusEnum.QUEUED, label: 'En Cola', emoji: '⏳' },
-        { status: ServiceStatusEnum.IN_PROGRESS, label: 'En Proceso', emoji: '🔧' },
-        { status: ServiceStatusEnum.COMPLETED, label: 'Completado', emoji: '✅' }
+        { status: ServiceStatusEnum.TUNNEL_WASH, label: 'Washing', emoji: '💧' },
+        { status: ServiceStatusEnum.QUEUED, label: 'Queued', emoji: '⏳' },
+        { status: ServiceStatusEnum.IN_PROGRESS, label: 'In Progress', emoji: '🔧' },
+        { status: ServiceStatusEnum.COMPLETED, label: 'Completed', emoji: '✅' }
     ];
 
     /**
@@ -53,7 +53,7 @@ export default function WashTrackingVisual() {
         <View style={styles.container}>
             {/* Título del tracking */}
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>Estado del Servicio</Text>
+                <Text style={styles.headerTitle}>Service Status</Text>
                 <Text style={styles.serviceNumber}>#{lastWash.serviceNumber}</Text>
             </View>
 
@@ -102,15 +102,15 @@ export default function WashTrackingVisual() {
             {/* Información adicional del servicio */}
             <View style={styles.infoContainer}>
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>Tipo:</Text>
+                    <Text style={styles.infoLabel}>Type:</Text>
                     <Text style={styles.infoValue}>{lastWash.serviceType}</Text>
                 </View>
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>Empleado:</Text>
+                    <Text style={styles.infoLabel}>Employee:</Text>
                     <Text style={styles.infoValue}>{lastWash.serviceEmployee}</Text>
                 </View>
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>Tiempo estimado:</Text>
+                    <Text style={styles.infoLabel}>Estimated Time:</Text>
                     <Text style={styles.infoValue}>{lastWash.serviceTimming} min</Text>
                 </View>
             </View>

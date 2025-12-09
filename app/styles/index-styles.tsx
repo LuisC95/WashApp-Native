@@ -57,19 +57,19 @@ export const styles = StyleSheet.create(
         {
             display: 'flex',
             flex: 1,
-            justifyContent: 'space-between',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
             alignItems: 'center',
             width: '100%',
             height: '62.8%',
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            position: 'absolute',
-            bottom: 0,
+            position: 'relative',
             paddingLeft: 20, 
             paddingRight: 20,
-            paddingTop: 10,
+            paddingTop: 50,
             paddingBottom: 10,
-            gap: 10,
+            gap: 15,
         },
         loyaltyProgram:
         {
@@ -81,6 +81,11 @@ export const styles = StyleSheet.create(
             padding: 2,
             textAlign: 'center',
             fontSize: 6,
+            position: 'absolute',
+            top: -25,
+            left: 20,
+            right: 20,
+            zIndex: 10,
         },
             loyaltyProgramPointsText:
             {
@@ -102,12 +107,20 @@ export const styles = StyleSheet.create(
         washTracking:
         {
             display: 'flex',
-            minHeight: '21.5%',
             width: '100%',
             backgroundColor: '#52CC52',
             borderRadius: 20,
             boxShadow: 'inset 6px 6px 21px #215221,inset -6px -6px 21px #83ff83',
             justifyContent: 'space-around',
+            height: '20%',
+        },
+        washTrackingCompact:
+        {
+            height: '20%',
+        },
+        washTrackingExpanded:
+        {
+            height: '60%',
         },
             washTrackingTitleText:
             {
@@ -119,7 +132,7 @@ export const styles = StyleSheet.create(
             },
         servicesMenu:
         {
-            minHeight: '17.3%',
+            height: '15%',
             width: '100%',
             display: 'flex',
             flexDirection: 'row',

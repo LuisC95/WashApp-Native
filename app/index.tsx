@@ -45,7 +45,7 @@ export default function Index() {
                   </Text>
                   <StaticsButton />
                 </View>
-                <View style={styles.washTracking}>
+                <View style={[styles.washTracking, hasWashToday() ? styles.washTrackingExpanded : styles.washTrackingCompact]}>
                   {!hasWashToday() ? (
                     <>
                       <View>
@@ -81,7 +81,6 @@ export default function Index() {
                     style={styles.ServicesMenuDetailingButton}
                   ></TouchableOpacity>
                 </View>
-                <View style={styles.servicesInformation}></View>
               </View>
             </View>
           </View>
